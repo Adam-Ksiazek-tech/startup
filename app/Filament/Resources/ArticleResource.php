@@ -62,7 +62,10 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')->label('Tytuł'),
+                Tables\Columns\TextColumn::make('user.id')->label('Autor id'),
+                Tables\Columns\TextColumn::make('user.name')->label('Autor'),
+                Tables\Columns\TextColumn::make('publication_date')->date()->label('Data publikacji'),
             ])
             ->filters([
                 //
@@ -74,7 +77,8 @@ class ArticleResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('publication_date', 'desc');
     }
 
     public static function getRelations(): array
@@ -92,4 +96,16 @@ class ArticleResource extends Resource
             'edit' => Pages\EditArticle::route('/{record}/edit'),
         ];
     }
+
+    /**
+     * eager loading relacji
+     *
+     * @return Builder
+     */
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('user');
+    }
+
+
 }
