@@ -70,7 +70,7 @@ class ArticleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label('Tytuł'),
                 Tables\Columns\TextColumn::make('addUser.name')->label('Autor'),
-                Tables\Columns\TextColumn::make('modUser.name')->label('Autor'),
+                Tables\Columns\TextColumn::make('modUser.name')->label('Modyfikował'),
                 Tables\Columns\TextColumn::make('publication_date')->date()->label('Data publikacji'),
             ])
             ->filters([
