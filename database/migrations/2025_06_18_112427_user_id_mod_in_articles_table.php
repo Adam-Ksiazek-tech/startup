@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::table('articles', function (Blueprint $table) {
             // Zmieniamy user_id na add_user_id (najprostsze: usunąć stare, dodać nowe)
-            $table->renameColumn('user_id', 'add_user_id');
+            // $table->renameColumn('user_id', 'add_user_id');
+
             // Dodajemy mod_user_id jako nullable, bo nie zawsze może być
-            $table->unsignedBigInteger('mod_user_id')->nullable()->after('add_user_id');
+            // $table->unsignedBigInteger('mod_user_id')->nullable()->after('add_user_id');
+
             // klucze obce do users.id
-            $table->foreign('add_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('mod_user_id')->references('id')->on('users')->onDelete('set null');
+            // $table->foreign('add_user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('mod_user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

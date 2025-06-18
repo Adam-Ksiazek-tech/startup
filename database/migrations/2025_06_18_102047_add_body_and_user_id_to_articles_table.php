@@ -16,7 +16,7 @@ return new class extends Migration
             // Jeśli chcesz zmienić typ na text, zrób to osobną migracją lub tutaj przez change()
 
             // Dodaj kolumnę user_id, jeśli jej nie ma
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            // $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 
