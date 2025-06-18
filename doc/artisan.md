@@ -30,3 +30,9 @@ $table->string('body')->change();
 ### wykonanie migracji
 
 sail artisan migrate
+
+## Tworzenie nowego pliku migracji, dodanie pola user_id_mod
+
+```
+sail artisan make:migration user_id_mod_in_articles_table --table=articles
+```

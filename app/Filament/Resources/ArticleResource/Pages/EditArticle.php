@@ -16,4 +16,17 @@ class EditArticle extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    /**
+     * Obsługa doadnie mod_user_id
+     * przy edycji Filament
+     *
+     * @param array $data
+     * @return array|mixed[]
+     */
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['mod_user_id'] = auth()->id();
+        return $data;
+    }
 }

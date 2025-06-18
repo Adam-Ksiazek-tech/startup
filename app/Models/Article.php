@@ -15,11 +15,27 @@ class Article extends Model
         'title',
         'body',
         'publication_date',
-        'user_id',
+        'add_user_id',
+        'mod_user_id',
     ];
 
-    public function user()
+    /**
+     * Relacja
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function addUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'add_user_id');
+    }
+
+    /**
+     * Relacja
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function modUser()
+    {
+        return $this->belongsTo(User::class, 'mod_user_id');
     }
 }

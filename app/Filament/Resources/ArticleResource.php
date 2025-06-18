@@ -29,6 +29,11 @@ class ArticleResource extends Resource
      */
     protected static function mutateFormDataBeforeCreate(array $data): array
     {
+        /**
+         * tymczasowy log dla debugowania
+         */
+        info('#105 ArticleResource Mutate create called with user_id = ' . auth()->id());
+
         $data['user_id'] = auth()->id();
         return $data;
     }
@@ -38,6 +43,7 @@ class ArticleResource extends Resource
      */
     protected static function mutateFormDataBeforeSave(array $data): array
     {
+        info('#106 ArticleResource  Mutate create called from Page with user_id = ' . auth()->id());
         $data['user_id'] = auth()->id();
         return $data;
     }
@@ -63,8 +69,8 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label('Tytuł'),
-                Tables\Columns\TextColumn::make('user.id')->label('Autor id'),
-                Tables\Columns\TextColumn::make('user.name')->label('Autor'),
+                Tables\Columns\TextColumn::make('addUser.name')->label('Autor'),
+                Tables\Columns\TextColumn::make('modUser.name')->label('Autor'),
                 Tables\Columns\TextColumn::make('publication_date')->date()->label('Data publikacji'),
             ])
             ->filters([
@@ -104,7 +110,8 @@ class ArticleResource extends Resource
      */
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->with('user');
+        //return parent::getEloquentQuery()->with('user');
+        return parent::getEloquentQuery()->with(['addUser', 'modUser']);
     }
 
 
