@@ -10,7 +10,7 @@
 <env name="DB_CONNECTION" value="sqlite"/>
 ```
 ### uruchomienie istniejących testów
-
+- z tym że to uruchomi bazę produkcyjną MySQL
 ```
 sail artisan test
 ```
@@ -50,3 +50,29 @@ sail artisan route:list | grep admin
 ## użytkownik testowy dla phpUnit
 
 ```php artisan make:filament-user```
+
+## uruchomienie środowiska testowego phpUnit z SQListe
+
+- utwórz plik: `.env.testing`
+
+```
+APP_ENV=testing
+APP_KEY=base64:9uMf8uwdPf9IqmwaLsg/zWFiVQVydF4kIzeDPJVrwVo=
+DB_CONNECTION=sqlite
+DB_DATABASE=:memory:
+CACHE_DRIVER=array
+SESSION_DRIVER=array
+QUEUE_CONNECTION=sync
+```
+### generowanie klucza sesji do env.testing
+
+```
+sail artisan key:generate --env=testing
+```
+
+## uruchominie środowiska testing
+
+```
+sail artisan test --env=testing
+```
+
