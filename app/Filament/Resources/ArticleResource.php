@@ -69,8 +69,7 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')->label('Tytuł'),
-                Tables\Columns\TextColumn::make('addUser.name')->label('Autor'),
-                Tables\Columns\TextColumn::make('modUser.name')->label('Modyfikował'),
+                Tables\Columns\TextColumn::make('user.name')->label('Autor'),
                 Tables\Columns\TextColumn::make('publication_date')->date()->label('Data publikacji'),
             ])
             ->filters([
@@ -111,7 +110,7 @@ class ArticleResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         //return parent::getEloquentQuery()->with('user');
-        return parent::getEloquentQuery()->with(['addUser', 'modUser']);
+        return parent::getEloquentQuery()->with(['user']);
     }
 
 

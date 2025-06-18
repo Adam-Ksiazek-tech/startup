@@ -36,3 +36,18 @@ sail artisan migrate
 ```
 sail artisan make:migration user_id_mod_in_articles_table --table=articles
 ```
+
+## rollback
+
+pomyliłem się, robię rollback
+
+- takie coś nie zadziałało
+```
+sail artisan migrate:rollback
+sail artisan migrate
+```
+- próbuję ręcznie wskazać ścieżkę
+```
+sail artisan migrate:rollback --path=database/migrations/2025_06_18_112427_user_id_mod_in_articles_table.php
+
+```

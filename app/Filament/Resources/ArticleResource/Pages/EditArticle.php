@@ -26,7 +26,8 @@ class EditArticle extends EditRecord
      */
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data['mod_user_id'] = auth()->id();
+        $userId = auth()->id();
+        $data['user_id'] = $userId;
         return $data;
     }
 }

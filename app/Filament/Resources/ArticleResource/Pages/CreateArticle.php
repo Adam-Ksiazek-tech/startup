@@ -14,9 +14,7 @@ class CreateArticle extends CreateRecord
     {
         $userId = auth()->id();
         info('#103 CreateArticle Mutate create called from Page with user_id = ' . $userId);
-
-        $data['add_user_id'] = auth()->id();
-        $data['mod_user_id'] = null;
+        $data['user_id'] = $userId;
         return $data;
     }
 
@@ -29,8 +27,9 @@ class CreateArticle extends CreateRecord
      */
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        info('#104 CreateArticle Mutate create called from Page with user_id = ' . auth()->id());
-        $data['user_id'] = auth()->id();
+        $userId = auth()->id();
+        info('#104 CreateArticle Mutate create called from Page with user_id = ' .$userId);
+        $data['user_id'] = $userId;
         return $data;
     }
 
