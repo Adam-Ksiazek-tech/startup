@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    /**
+     * Dodanie pól dla formularza tworzącego artykuł
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'body',
+        'publication_date',
+        'user_id',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -12,6 +12,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\DatePicker;
 
 class ArticleResource extends Resource
 {
@@ -46,9 +49,11 @@ class ArticleResource extends Resource
                 TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Textarea::make('content')
-                    ->required(),
                 DatePicker::make('publication_date')
+                    ->required(),
+                Textarea::make('body')
+                    ->rows(10)
+                    ->extraAttributes(['style' => 'height: 20vh;'])
                     ->required(),
             ]);
     }
