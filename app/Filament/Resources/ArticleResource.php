@@ -76,7 +76,10 @@ class ArticleResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->authorize(fn (Article $record): bool => auth()->user()->can('update', $record)),
+                Tables\Actions\DeleteAction::make()
+                    ->authorize(fn (Article $record): bool => auth()->user()->can('delete', $record)),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
