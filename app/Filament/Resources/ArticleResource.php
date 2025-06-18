@@ -112,7 +112,6 @@ class ArticleResource extends Resource
      */
     public static function getEloquentQuery(): Builder
     {
-        //return parent::getEloquentQuery()->with('user');
         return parent::getEloquentQuery()->with(['user']);
     }
 
