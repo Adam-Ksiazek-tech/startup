@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Columns\TextColumn;
 
 class ArticleResource extends Resource
 {
@@ -68,12 +69,24 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->label('Tytuł'),
-                Tables\Columns\TextColumn::make('user.name')->label('Autor'),
-                Tables\Columns\TextColumn::make('publication_date')->date()->label('Data publikacji'),
+                TextColumn::make('title')->label('Tytuł')->searchable(),
+                TextColumn::make('user.name')->label('Autor'),
+                TextColumn::make('publication_date')->date()->label('Data publikacji'),
             ])
             ->filters([
-                //
+                /**
+                 * Wyszukiwnie treści z body
+                 * w Filament'cie pojawi się lejek z dodtkowymi
+                 * opcjami wyszukiwania
+                 */
+                Tables\Filters\Filter::make('Szukaj w treści')
+                    ->form([
+                        Forms\Components\TextInput::make('body'),
+                    ])
+                    ->query(function (\Illuminate\Database\Eloquent\Builder $query, array $data) {
+                        return $query
+                            ->when($data['body'], fn ($q, $value) => $q->where('body', 'like', "%{$value}%"));
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
@@ -115,5 +128,13 @@ class ArticleResource extends Resource
         return parent::getEloquentQuery()->with(['user']);
     }
 
-
+    /**
+     * Search w Filament Resource
+     *
+     * @return string[]
+     */
+    public static function getSearchColumns(): array
+    {
+        return ['title', 'body'];
+    }
 }
