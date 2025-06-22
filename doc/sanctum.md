@@ -74,4 +74,11 @@ to stworzy plik:
 
 app/Http/Controllers/Api/ArticleApiController.php  
 
+## URL do API
+
+http://localhost/api/articles
+
+http://localhost/api/articles/1
+
+
 
