@@ -30,3 +30,20 @@ Sanctum doda tabelę personal_access_tokens.
 ```
 sail artisan make:controller Api/AuthController
 ```
+### Routing
+
+`routes/api.php`
+
+### ArticleApiController
+
+- kontroler do API
+
+```
+sail artisan make:controller Api/ArticleApiController --api
+```
+
+to stworzy plik: 
+
+app/Http/Controllers/Api/ArticleApiController.php  
+
+###
