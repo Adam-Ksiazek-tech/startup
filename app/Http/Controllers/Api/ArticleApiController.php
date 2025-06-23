@@ -51,6 +51,7 @@ class ArticleApiController extends Controller
     {
         $article = Article::findOrFail($id);
 
+        // 🔒 Sprawdzenie czy aktualny użytkownik jest autorem
         if ($article->user_id !== Auth::id()) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }
@@ -73,6 +74,7 @@ class ArticleApiController extends Controller
     {
         $article = Article::findOrFail($id);
 
+        // 🔒 Sprawdź, czy użytkownik to autor
         if ($article->user_id !== Auth::id()) {
             return response()->json(['message' => 'Unauthorized'], 403);
         }

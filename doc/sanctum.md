@@ -80,11 +80,60 @@ http://localhost/api/articles
 
 http://localhost/api/articles/1
 
-### Pobranie tokena dla API
+### Wygenerowanie tokena | API
 
 `POST api/login`
 
+- generuje token
+- przykładowy response
 
-### Tworzenie nowego artykułu by API
+```
+{
+    "token": "2|Pfh7nXQRZxlW267lx4eW8nDFBg18GkC23lIYZKyv244c7cdb",
+    "user": {
+        "id": 2,
+        "name": "Allison O'Hara Jr.",
+        "email": "boyle.renee@example.com",
+        "email_verified_at": "2025-06-22T13:09:34.000000Z",
+        "created_at": "2025-06-22T13:09:34.000000Z",
+        "updated_at": "2025-06-22T13:09:34.000000Z"
+    }
+}
+```
+
+### Tworzenie nowego artykułu | API
+
+`POST      api/articles`
+
+- przykładowy request
+
+```
+{
+  "title": "Nowy artykuł z API #4",
+  "body": "To jest przykładowa treść nowego artykułu utworzonego z Postmana. #4",
+  "publication_date": "2025-06-22"
+}
+```
+
+- przykładowy response
+
+```
+{
+    "title": "Nowy artykuł z API #4",
+    "body": "To jest przykładowa treść nowego artykułu utworzonego z Postmana. #4",
+    "publication_date": "2025-06-22",
+    "user_id": 2,
+    "updated_at": "2025-06-23T09:59:51.000000Z",
+    "created_at": "2025-06-23T09:59:51.000000Z",
+    "id": 39
+}
+```
+
+### Update artykułu | API
+
+`PUT /api/articles/{id}`
 
 
+### Usunięcie artykułu | API
+
+`DELETE /api/articles/{id}`
